@@ -20,6 +20,7 @@ RSpec.feature "Users can only see the appropriate links" do
   context "Regular Users" do
     before do
       login_as(user)
+      assign_role!(user, :viewer, project)
     end
     scenario "Cannot see the New Project Link" do
       visit "/"
