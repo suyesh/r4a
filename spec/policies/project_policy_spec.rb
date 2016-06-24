@@ -11,7 +11,7 @@ RSpec.describe ProjectPolicy do
       end
 
       it "allows viewers of the project" do
-        assign_role!(user, :viewr, project)
+        assign_role!(user, :viewer, project)
         expect(subject).to permit(user, project)
       end
 
@@ -30,7 +30,7 @@ RSpec.describe ProjectPolicy do
         expect(subject).to permit(admin, project)
       end
 
-      it "doesnt allow users assigned to other projects" do
+      it "doesn't allow users assigned to other projects" do
         other_project = FactoryGirl.create :project
         assign_role!(user, :manager, other_project)
         expect(subject).not_to permit(user, project)
